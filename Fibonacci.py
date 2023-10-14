@@ -1,8 +1,16 @@
-num_terms = int(input("Enter the number of Fibonacci numbers to generate: "))
+def fibonacci(n):
+    fib_sequence = [0, 1]
+    while len(fib_sequence) < n:
+        fib_sequence.append(fib_sequence[-1] + fib_sequence[-2])
+    return fib_sequence[:n]
 
-fibonacci_sequence = [0, 1]
-for i in range(2, num_terms):
-    next_number = fibonacci_sequence[i-1] + fibonacci_sequence[i-2]
-    fibonacci_sequence.append(next_number)
-
-print("Fibonacci sequence:", fibonacci_sequence)
+try:
+    n = int(input("Enter the number of Fibonacci numbers to generate: "))
+    if n < 0:
+        raise ValueError("Please enter a non-negative integer.")
+    
+    result = fibonacci(n)
+    print(f"The first {n} Fibonacci numbers are:")
+    print(result)
+except ValueError as e:
+    print(e)
